@@ -37,20 +37,23 @@ class GameScene(Scene):
 
         self.dt = 0
         self.fps = 30
-        self.player_sprite = TankSprite(SpriteGroup(), sprites=None)
-        self.dt = 0
         self.grid_size = 50
+
+        self.dt = 0
 
         self.grid = []
 
         for x in range(self.screen.get_width() // self.grid_size):
             row = []
             for y in range(self.screen.get_width() // self.grid_size):
-                row.append((x,y))
+                row.append((x, y))
             self.grid.append(row)
 
-        # for debuging
-        # print(self.grid)
+
+        # setting up game objects
+        self.player_sprite = TankSprite(self)
+        self.player_sprite_group = SpriteGroup(self.player_sprite)
+
 
     def exit(self):
         pass
@@ -71,6 +74,8 @@ class GameScene(Scene):
                              (self.screen.get_width(), y)
                              )
         pass
+
+        self.player_sprite_group.draw(self.screen)
 
     def update(self, dt):
         pass
